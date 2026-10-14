@@ -1,0 +1,223 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Applicant {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  email String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  information  ApplicantInformation[]
+  applications Application[]
+  interviewPrivacyConsents InterviewPrivacyConsent[]
+
+  @@index([createdAt])
+}
+
+model ApplicantInformation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  applicant Applicant? @relation(fields: [applicantId], references: [id])
+  applicantId String? @unique @db.ObjectId
+  mobile Int
+  birthDate DateTime?
+  city String
+  country String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ApplicantSkillsExpertise {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  applicantId String  @unique @db.ObjectId
+  skills      Json    @db.Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ApplicantResumeDetails {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  applicantId String  @unique @db.ObjectId
+  fileName String
+  fileSize Int
+  updatedAt   DateTime @updatedAt
+}
+
+model ResumeData {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  applicantId String @unique @db.ObjectId
+  fullName String
+  dateOfBirth String
+  gender String
+  nationalities String[]
+  address String
+  city String
+  country String
+  phoneNumber String
+  whatsapp String?
+  email String
+  linkedin String?
+  availabilityToRelocate Boolean @default(false)
+  relocationCountries String[]
+  careerSummary String
+  professionalExperience Json @db.Json
+  education Json @db.Json
+  certifications Json @db.Json
+  languageSkills Json @db.Json
+  digitalSkills Json @db.Json
+  availabilityToTravel Boolean @default(false)
+  travelFrequency String?
+  salaryExpectation String?
+  areasOfInterest String[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Job {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  jobId String
+  title String
+  category String
+  description String
+  location String
+  type String
+  salary String
+  essentialSkills String[]
+  responsibilities String[]
+  qualifications String[]
+  isActive Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  applications Application[]
+  interviewQuestions    JobInterviewQuestions?   
+
+  @@index([isActive])
+  @@index([category])
+  @@index([location])
+  @@index([createdAt])
+}
+
+model Application {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  applicant Applicant @relation(fields: [applicantId], references: [id])
+  applicantId String @db.ObjectId
+  job Job @relation(fields: [jobId], references: [id])
+  jobId String @db.ObjectId
+  status String @default("applied")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  interviewPrivacyConsents InterviewPrivacyConsent[]
+  interviewSession InterviewSession?
+
+  @@index([applicantId])
+  @@index([jobId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Admin {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  name String
+  role String @default("admin") 
+  permissions String[] 
+  auth0UserId String? 
+  isActive Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+  @@index([auth0UserId])
+}
+
+model DiscResult {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  applicantId String @unique @db.ObjectId
+  naturalProfile Json @db.Json
+  adaptedProfile Json @db.Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model JobInterviewQuestions {
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId
+  jobId               String   @db.ObjectId @unique
+  job                 Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  interviewQuestions  String[]
+  intiLanguage        String   @default("en")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model InterviewPrivacyConsent {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  applicant     Applicant   @relation(fields: [applicantId], references: [id])
+  applicantId   String      @db.ObjectId
+  application   Application @relation(fields: [applicationId], references: [id])
+  applicationId String      @db.ObjectId
+  consentedAt   DateTime    @default(now())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([applicantId, applicationId])
+  @@index([applicantId])
+  @@index([applicationId])
+  @@index([consentedAt])
+}
+
+model InterviewSession {
+  id                String             @id @default(auto()) @map("_id") @db.ObjectId
+  application       Application         @relation(fields: [applicationId], references: [id])
+  applicationId     String              @db.ObjectId
+  status            String              @default("in-progress") // in-progress, completed, abandoned
+  startedAt         DateTime            @default(now())
+  completedAt       DateTime?
+  videoId           String?            
+  averageScore      Float?              // Average AI analysis score across all responses
+  isAnalyzed        Boolean             @default(false)      // Flag to track if analysis has been performed
+  responses         InterviewResponse[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+
+  @@unique([applicationId])
+  @@index([status])
+  @@index([startedAt])
+  @@index([averageScore])
+  @@index([isAnalyzed])
+}
+
+model InterviewResponse {
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  session         InterviewSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  sessionId       String           @db.ObjectId
+  questionId      String
+  questionText    String
+  transcript      String
+  acknowledgement String?
+  questionIndex   Int
+  isFollowUp      Boolean          @default(false)
+  isRetry         Boolean          @default(false)
+  retryCount      Int              @default(0)
+  videoId         String?         
+  score           Int?             // AI analysis score (0-100) for this specific answer
+  analysis        String?          // AI analysis feedback text for this answer
+  answeredAt      DateTime         @default(now())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  @@index([sessionId])
+  @@index([questionIndex])
+  @@index([answeredAt])
+  @@index([score])
+}

@@ -1,0 +1,148 @@
+export interface Adjective {
+  id: number
+  word: string
+  translation: string
+  category: 'D' | 'I' | 'S' | 'C'
+  value: number
+}
+
+export const ADJECTIVES: Adjective[] = [
+  // D – Dominance (1-25)
+  { id: 1, word: 'Ativo', translation: 'Active', category: 'D', value: 1 },
+  { id: 2, word: 'Audacioso', translation: 'Bold', category: 'D', value: 1 },
+  { id: 3, word: 'Arrogante', translation: 'Arrogant', category: 'D', value: 1 },
+  { id: 4, word: 'Corajoso', translation: 'Courageous', category: 'D', value: 1 },
+  { id: 5, word: 'Decidido', translation: 'Decisive', category: 'D', value: 1 },
+  { id: 6, word: 'Destacado', translation: 'Outstanding', category: 'D', value: 1 },
+  { id: 7, word: 'Exigente', translation: 'Demanding', category: 'D', value: 1 },
+  { id: 8, word: 'Firme', translation: 'Firm', category: 'D', value: 1 },
+  { id: 9, word: 'Impaciente', translation: 'Impatient', category: 'D', value: 1 },
+  { id: 10, word: 'Independente', translation: 'Independent', category: 'D', value: 1 },
+  { id: 11, word: 'Inflexível', translation: 'Inflexible', category: 'D', value: 1 },
+  { id: 12, word: 'Influenciador', translation: 'Influential', category: 'D', value: 1 },
+  { id: 13, word: 'Líder', translation: 'Leader', category: 'D', value: 1 },
+  { id: 14, word: 'Orgulhoso', translation: 'Proud', category: 'D', value: 1 },
+  { id: 15, word: 'Persistente', translation: 'Persistent', category: 'D', value: 1 },
+  { id: 16, word: 'Prático', translation: 'Practical', category: 'D', value: 1 },
+  { id: 17, word: 'Resoluto', translation: 'Resolute', category: 'D', value: 1 },
+  { id: 18, word: 'Vaidoso', translation: 'Vain', category: 'D', value: 1 },
+  { id: 19, word: 'Vingativo', translation: 'Vindictive', category: 'D', value: 1 },
+  { id: 20, word: 'Pretensioso', translation: 'Pretentious', category: 'D', value: 1 },
+  { id: 21, word: 'Crítico', translation: 'Critical', category: 'D', value: 1 },
+  { id: 22, word: 'Egocêntrico', translation: 'Egocentric', category: 'D', value: 1 },
+  { id: 23, word: 'Egoísta', translation: 'Selfish', category: 'D', value: 1 },
+  { id: 24, word: 'Destemido', translation: 'Fearless', category: 'D', value: 1 },
+  { id: 25, word: 'Competitivo', translation: 'Competitive', category: 'D', value: 1 },
+
+  // I – Influence (26-50)
+  { id: 26, word: 'Alegre', translation: 'Cheerful', category: 'I', value: 1 },
+  { id: 27, word: 'Animado', translation: 'Lively', category: 'I', value: 1 },
+  { id: 28, word: 'Barulhento', translation: 'Noisy', category: 'I', value: 1 },
+  { id: 29, word: 'Bem-humorado', translation: 'Good-humored', category: 'I', value: 1 },
+  { id: 30, word: 'Bem-Quisto', translation: 'Well-liked', category: 'I', value: 1 },
+  { id: 31, word: 'Bom Companheiro', translation: 'Good Companion', category: 'I', value: 1 },
+  { id: 32, word: 'Comunicativo', translation: 'Communicative', category: 'I', value: 1 },
+  { id: 33, word: 'Contagiante', translation: 'Infectious', category: 'I', value: 1 },
+  { id: 34, word: 'Empolgante', translation: 'Exciting', category: 'I', value: 1 },
+  { id: 35, word: 'Enérgico', translation: 'Energetic', category: 'I', value: 1 },
+  { id: 36, word: 'Entusiasta', translation: 'Enthusiastic', category: 'I', value: 1 },
+  { id: 37, word: 'Espalhafatoso', translation: 'Showy', category: 'I', value: 1 },
+  { id: 38, word: 'Estimulante', translation: 'Stimulating', category: 'I', value: 1 },
+  { id: 39, word: 'Exagerado', translation: 'Exaggerated', category: 'I', value: 1 },
+  { id: 40, word: 'Extrovertido', translation: 'Extroverted', category: 'I', value: 1 },
+  { id: 41, word: 'Exuberante', translation: 'Exuberant', category: 'I', value: 1 },
+  { id: 42, word: 'Motivador', translation: 'Motivating', category: 'I', value: 1 },
+  { id: 43, word: 'Popular', translation: 'Popular', category: 'I', value: 1 },
+  { id: 44, word: 'Ousado', translation: 'Daring', category: 'I', value: 1 },
+  { id: 45, word: 'Sensível', translation: 'Sensitive', category: 'I', value: 1 },
+  { id: 46, word: 'Simpático', translation: 'Friendly', category: 'I', value: 1 },
+  { id: 47, word: 'Sentimental', translation: 'Sentimental', category: 'I', value: 1 },
+  { id: 48, word: 'Inspirador', translation: 'Inspiring', category: 'I', value: 1 },
+  { id: 49, word: 'Carismático', translation: 'Charismatic', category: 'I', value: 1 },
+  { id: 50, word: 'Engajador', translation: 'Engaging', category: 'I', value: 1 },
+
+  // S – Steadiness / Planner (51-75)
+  { id: 51, word: 'Calmo', translation: 'Calm', category: 'S', value: 1 },
+  { id: 52, word: 'Compreensivo', translation: 'Understanding', category: 'S', value: 1 },
+  { id: 53, word: 'Conservador', translation: 'Conservative', category: 'S', value: 1 },
+  { id: 54, word: 'Dedicado', translation: 'Dedicated', category: 'S', value: 1 },
+  { id: 55, word: 'Equilibrado', translation: 'Balanced', category: 'S', value: 1 },
+  { id: 56, word: 'Leal', translation: 'Loyal', category: 'S', value: 1 },
+  { id: 57, word: 'Medroso', translation: 'Fearful', category: 'S', value: 1 },
+  { id: 58, word: 'Paciente', translation: 'Patient', category: 'S', value: 1 },
+  { id: 59, word: 'Persistente', translation: 'Persevering', category: 'S', value: 1 },
+  { id: 60, word: 'Rotineiro', translation: 'Routine', category: 'S', value: 1 },
+  { id: 61, word: 'Sincero', translation: 'Sincere', category: 'S', value: 1 },
+  { id: 62, word: 'Tranquilo', translation: 'Peaceful', category: 'S', value: 1 },
+  { id: 63, word: 'Afetuoso', translation: 'Affectionate', category: 'S', value: 1 },
+  { id: 64, word: 'Colaborativo', translation: 'Collaborative', category: 'S', value: 1 },
+  { id: 65, word: 'Apoiado', translation: 'Supportive', category: 'S', value: 1 },
+  { id: 66, word: 'Protetor', translation: 'Protective', category: 'S', value: 1 },
+  { id: 67, word: 'Humilde', translation: 'Humble', category: 'S', value: 1 },
+  { id: 68, word: 'Discreto', translation: 'Discreet', category: 'S', value: 1 },
+  { id: 69, word: 'Modesto', translation: 'Modest', category: 'S', value: 1 },
+  { id: 70, word: 'Estável', translation: 'Stable', category: 'S', value: 1 },
+  { id: 71, word: 'Amigável', translation: 'Friendly', category: 'S', value: 1 },
+  { id: 72, word: 'Cooperativo', translation: 'Cooperative', category: 'S', value: 1 },
+  { id: 73, word: 'Atencioso', translation: 'Thoughtful', category: 'S', value: 1 },
+  { id: 74, word: 'Pacífico', translation: 'Peaceful', category: 'S', value: 1 },
+  { id: 75, word: 'Tolerante', translation: 'Tolerant', category: 'S', value: 1 },
+
+  // C – Conscientiousness / Analyst (76-100)
+  { id: 76, word: 'Auto-Disciplinado', translation: 'Self-disciplined', category: 'C', value: 1 },
+  { id: 77, word: 'Auto-Suficiente', translation: 'Self-sufficient', category: 'C', value: 1 },
+  { id: 78, word: 'Calculista', translation: 'Calculating', category: 'C', value: 1 },
+  { id: 79, word: 'Cumpridor', translation: 'Compliant', category: 'C', value: 1 },
+  { id: 80, word: 'Desconfiado', translation: 'Suspicious', category: 'C', value: 1 },
+  { id: 81, word: 'Eficiente', translation: 'Efficient', category: 'C', value: 1 },
+  { id: 82, word: 'Idealista', translation: 'Idealistic', category: 'C', value: 1 },
+  { id: 83, word: 'Indeciso', translation: 'Indecisive', category: 'C', value: 1 },
+  { id: 84, word: 'Introvertido', translation: 'Introverted', category: 'C', value: 1 },
+  { id: 85, word: 'Metódico', translation: 'Methodical', category: 'C', value: 1 },
+  { id: 86, word: 'Minucioso', translation: 'Thorough', category: 'C', value: 1 },
+  { id: 87, word: 'Perfeccionista', translation: 'Perfectionist', category: 'C', value: 1 },
+  { id: 88, word: 'Racional', translation: 'Rational', category: 'C', value: 1 },
+  { id: 89, word: 'Reservado', translation: 'Reserved', category: 'C', value: 1 },
+  { id: 90, word: 'Teórico', translation: 'Theoretical', category: 'C', value: 1 },
+  { id: 91, word: 'Detalhista', translation: 'Detail-oriented', category: 'C', value: 1 },
+  { id: 92, word: 'Estrategista', translation: 'Strategic', category: 'C', value: 1 },
+  { id: 93, word: 'Objetivo', translation: 'Objective', category: 'C', value: 1 },
+  { id: 94, word: 'Preciso', translation: 'Precise', category: 'C', value: 1 },
+  { id: 95, word: 'Questionador', translation: 'Questioning', category: 'C', value: 1 },
+  { id: 96, word: 'Cauteloso', translation: 'Cautious', category: 'C', value: 1 },
+  { id: 97, word: 'Analítico', translation: 'Analytical', category: 'C', value: 1 },
+  { id: 98, word: 'Sistemático', translation: 'Systematic', category: 'C', value: 1 },
+  { id: 99, word: 'Organizado', translation: 'Organized', category: 'C', value: 1 },
+  { id: 100, word: 'Frio', translation: 'Cold', category: 'C', value: 1 },
+]
+
+export const CATEGORY_INFO = {
+  D: {
+    title: 'Dominance / Executor',
+    color: '#f57171',
+    lightColor: '#fee2e2',
+    description: 'Direct, results-oriented, decisive, and competitive',
+  },
+  I: {
+    title: 'Influence / Communicator',
+    color: '#c7a334',
+    lightColor: '#fef9c3',
+    description: 'Outgoing, enthusiastic, optimistic, and social',
+  },
+  S: {
+    title: 'Steadiness / Planner',
+    color: '#4cad70',
+    lightColor: '#dcfce7',
+    description: 'Even-tempered, accommodating, patient, and humble',
+  },
+  C: {
+    title: 'Conscientiousness / Analyst',
+    color: '#6587d6', 
+    lightColor: '#587ac7',
+    description: 'Analytical, reserved, precise, and systematic',
+  },
+}
+
+export const MIN_SELECTIONS = 8
+export const MAX_SELECTIONS = 25
+

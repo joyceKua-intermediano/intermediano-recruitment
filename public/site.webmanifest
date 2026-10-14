@@ -1,0 +1,16 @@
+{
+  "name": "INTERMEDIANO - Global Talent Platform",
+  "short_name": "Intermediano",
+  "description": "Global Talent Platform connecting global talent to opportunities without borders",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7c2a1c",
+  "theme_color": "#7c2a1c",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
